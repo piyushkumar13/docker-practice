@@ -1,0 +1,18 @@
+version: '3.6' # Notice the version.
+services:
+
+  wordpress:
+    image: wordpress
+    network_mode: bridge
+    links:
+      - mysql
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: abc123
+
+  mysql:
+    image: mysql:5.7.22
+    network_mode: bridge
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123

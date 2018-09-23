@@ -1,0 +1,25 @@
+version: '3.6' # Notice the version.
+services:
+
+  wordpress:
+    image: wordpress
+    links:
+      - mysql
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_PASSWORD: abc123
+    networks:
+      - pk_network
+
+  mysql:
+    image: mysql:5.7.22
+    environment:
+      MYSQL_ROOT_PASSWORD: abc123
+    networks:
+      - pk_network
+
+networks:
+  pk_network:
+    name: my_net # This feature of providing name of the network is supported in the latest version of the docker-compose.
+    driver: bridge
